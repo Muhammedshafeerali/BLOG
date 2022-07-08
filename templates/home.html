@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    
+
+
+<div class="col-lg-12">
+<div class="col-lg-6">
+    <div class="button-content mid-center position-absolute">
+        <a type="button" href="/newpost/" class="btn btn-outline-primary  btn-lg btn-block btn-size">New Post</a>
+    </div>
+</div>
+
+<div class="col-lg-6">
+    <div class="button-content mid-center-right position-absolute">
+        <a type="button" href="/viewpost/" class="btn btn-outline-secondary btn-lg btn-block btn-size">View All Post</a>
+    </div>
+</div>
+    
+
+</div>
+<style>
+   
+    .btn-size{
+        width:200px;
+    }
+    .mid-center {
+            top: 50%;
+            left: 40%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+    .mid-center-right{
+        top: 50%;
+            left: 60%;
+            transform: translateX(-50%) translateY(-50%);
+    }
+    /* .button-content {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #ff8899;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
+</style
+{% endblock %}
+    

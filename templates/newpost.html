@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="messages">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">  <i class="fa  fa-check-square-o fa-2x"></i>&nbsp;&nbsp;<strong>{{message}}</strong></div>
+    {% endfor %}
+</div>
+<div class="heading pt-5">
+    <h1>New Post</h1>
+</div>
+<form class="pt-5" method="POST" id="blogform" action="/newpost/" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-2 pt-2">
+                <label for="Heading ">Heading</label>
+            </div>
+
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="Heading" name="heading" required>
+            </div>
+            <!-- <div class="col-lg-2">
+
+            </div> -->
+            <!-- --- -->
+            <div class="col-lg-2 pt-2">
+                <label for="Category ">Category</label>
+            </div>
+
+            <div class="col-lg-4 pt-2">
+                <select class="form-control" id="Category" name="Category" required>
+                    <option value="0">Please Select</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Sports">Sports</option>
+                    
+                </select>
+            </div>
+
+
+            <!--  -->
+            <div class="col-lg-1 pt-2 ">
+                <label for="Tags ">Tags</label>
+            </div>
+
+            <div class="col-lg-5 pt-2">
+                <input type="text" class="form-control" id="Tags" name="Tags" required>
+            </div>
+
+            <div class="content pt-4">
+                <div class="content-lable">
+                    <label for="content">Content</label>
+                </div>
+                <div class="content">
+                    <textarea id="mytextarea" name="content" required>Please Type content here</textarea>
+                </div>
+                
+            </div>
+            
+
+
+
+        </div>
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="submit btn btn-primary">Submit</a>
+        </div>
+
+</form>
+
+{% endblock %}

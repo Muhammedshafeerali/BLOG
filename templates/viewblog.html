@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+    
+<div class="viewpost">
+    <div class="categoryfilter pt-5">
+        <select class="form-control btn-size" id="category" name="Category">
+            <option value="0">Category Filter</option>
+            
+            <option value="Drama">Drama</option>
+            <option value="Travel">Travel</option>
+            <option value="Sports">Sports</option>
+            
+        </select>
+    </div>
+    <div class="blogs" id="blogs">
+        {% for blog in blogs %}
+        <div class="col-lg-8 NewBlog pt-5">
+            <div class="heading">
+                <h1>{{blog.heading}}</h1>
+            </div>
+            <div class="sentence">
+                <p>
+                    {{blog.content |safe}}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+        
+    
+    
+</div>
+
+<style>
+     .btn-size{
+        width:200px;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+       
+        $("#category").change(function(e){
+           
+            var value=$(this).val()
+            if (value !="0"){
+                $.ajax({
+                    url:"/getcategory/",
+                    type:"GET",
+                    data:{
+                        'categ':value
+                    },
+                    success:function(data){
+                        if(data.blogs==""){
+                            alert("no blogs")
+                        }
+                        options=[]
+                        $.each(data.blogs,function(i,item){
+                            options.push(`<div class="col-lg-8 NewBlog pt-5"><div class="heading"> <h1>${item.heading}</h1>
+                                            </div>
+                                            <div class="sentence">
+                                                <p>
+                                                    ${item.content}
+                                                </p>
+                                            </div>
+                                        </div>`)
+
+                        })
+
+                        console.log(options)
+                        document.getElementById("blogs").innerHTML = options
+                    // $("#blogs").html(options)
+
+                    }
+                })
+            }
+        })
+    })
+</script>
+{% endblock%}
+    
